@@ -16,24 +16,30 @@ public class Knapsack {
 	
 	public int knapsackAlgorithm() {
 		
-		int A[] = new int[W+1];
-		int B[] = new int[W+1];
+		int[][] m = new int[n+1][W+1];
 		
-		for(int i = 0; i <= W; i++) {
-			B[i] = 0;
+		for(int j = 0; j <= W; j++) {
+			m[0][j] = 0;
 		}
 		
-		for(int k = 1; k <= n; k++ ) {
-			A = copyArray(A,B);
-			
-			for(int i = k; i <= W; i++) {
-				if(A[i-k] + )
+		for(int i = 1; i <= n; i++) {
+			for(int j = 0; j <=W; j++) {
+				if(weights[i] > j) {
+					m[i][j] = m[i-1][j];
+				}
+				else {
+					m[i][j] = max(m[i-1][j], m[i-1][j-weights[i]] + value[i]);
+				}
 			}
 		}
 		
 		
-		
-		return 0;
+		return m[n][W];
+	}
+	
+	public int max(int a, int b) {
+		if(a >= b) return a;
+		else return b;
 	}
 	
 	public int[] copyArray(int[] A, int[] B) {
