@@ -12,6 +12,7 @@ public class Knapsack {
 		this.W = w;
 		this.n= n;
 		int solution = knapsackAlgorithm();
+		System.out.println(solution);
 	}
 	
 	public int knapsackAlgorithm() {
