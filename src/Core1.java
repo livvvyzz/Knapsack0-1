@@ -2,7 +2,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public class Main {
+public class Core1 {
 
 	private static int numberOfNTested = 11;
 	private static long[] times = new long[numberOfNTested];
@@ -27,12 +27,15 @@ public class Main {
 		int[] weights = new int[n+1];
 		values[0] = 0; weights[0] = 0;
 		
+		
 		for(int i = 2; i < n +2; i++) {
 			values[i-1] = Integer.parseInt(args[i]);
 		}
 		for(int i = n+2; i < 2*n + 2; i++) {
 			weights[i - (n+1)] = Integer.parseInt(args[i]);
 		}
+	
+		
 		
 		
 		if(weights.length != values.length) {
@@ -40,6 +43,8 @@ public class Main {
 			System.exit(n);
 		}
 		
+		
+
 		Knapsack k = new Knapsack(values, weights, W, n);
 		
 		/**

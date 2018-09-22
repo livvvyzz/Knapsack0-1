@@ -8,6 +8,7 @@ public class Knapsack {
 	private int solution;
 
 	public Knapsack(int[] value, int[] weights, int wt, int n) {
+		System.out.println("knapsack 0-1");
 		this.value = value;
 		this.weights = weights;
 		this.W = wt;
@@ -39,7 +40,7 @@ public class Knapsack {
 		int w = W;
 		for (int i = n; i > 0 && sol > 0; i--) {
 			if (sol != m[i - 1][w]) {
-				System.out.println(weights[i] + " ");
+				System.out.println(weights[i] + " item: " + i);
 
 				sol = sol - value[i];
 				w = w - weights[i];
