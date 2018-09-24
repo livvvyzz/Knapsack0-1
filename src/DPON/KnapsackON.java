@@ -1,3 +1,4 @@
+package DPON;
 
 public class KnapsackON {
 
@@ -6,11 +7,14 @@ public class KnapsackON {
 	private int[] names;
 	private int W;
 	private int n;
-
+	private int bm = 0;
 	private int solution;
 
 	public KnapsackON(int[] value, int[] weights, int[] count, int wt, int n) {
-		System.out.println("Knapsack 0n");
+		System.out.println("--------------------------------");
+
+		System.out.println("Knapsack 0N Dynamic Programming");
+		
 		this.value = value;
 		this.weights = weights;
 		this.W = wt;
@@ -20,6 +24,7 @@ public class KnapsackON {
 		int tot = 0;
 		for(int i = 0; i < count.length; i ++) {
 			tot += count[i];
+			bm++;
 		}
 		
 		int[] newVals = new int[tot+1];
@@ -35,12 +40,12 @@ public class KnapsackON {
 				newWeights[x] = weights[i];
 				names[x] = i;
 				x++;
+				bm++;
 			}
 		}
 		
 		this.value = newVals;
 		this.weights = newWeights;
-		
 		
 		this.n = tot;
 		knapsackAlgorithm();
@@ -61,22 +66,24 @@ public class KnapsackON {
 				} else {
 					m[i][j] = max(m[i - 1][j], m[i - 1][j - weights[i]] + value[i]);
 				}
+				bm++;
 			}
 		}
 
 		int sol = m[n][W];
 		int w = W;
-		System.out.println("----------------------------------");
-		System.out.println("Solution " + sol);
+		this.solution = sol;
+		System.out.println("Solution: " + sol);
+		System.out.println("Items included are...");
 		for (int i = n; i > 0 && sol > 0; i--) {
 			if (sol != m[i - 1][w]) {
-				System.out.println(weights[i] + " item" + names[i]);
+				System.out.println("Item " + names[i] + " with weight " + weights[i] + " and value " + value[i]);
 
 				sol = sol - value[i];
 				w = w - weights[i];
 			}
+			bm++;
 		}
-		System.out.println("----------------------------------");
 
 	}
 
@@ -91,6 +98,10 @@ public class KnapsackON {
 	public int getSol() {
 		return solution;
 
+	}
+	
+	public int getBM() {
+		return bm;
 	}
 
 }

@@ -1,3 +1,4 @@
+package DPON;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -17,7 +18,7 @@ public class Comp1 {
 	 * weights
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static KnapsackON main(String[] args) {
 		// TODO Auto-generated method stub
 
 		
@@ -70,6 +71,8 @@ public class Comp1 {
 		for (int i = 0; i < numberOfNTested; i++) {
 			System.out.println(times[i]);
 		} */
+		
+		return k;
 		
 	}
 

@@ -20,7 +20,7 @@ public class BruteForce {
 	 * weights
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static KnapsackBruteForce main(String[] args) {
 		// TODO Auto-generated method stub
 
 		
@@ -74,6 +74,8 @@ public class BruteForce {
 			System.out.println(times[i]);
 		}
 		*/
+		
+		return k;
 		
 	}
 

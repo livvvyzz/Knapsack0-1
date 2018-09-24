@@ -1,3 +1,4 @@
+package DP01;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -17,7 +18,7 @@ public class Core1 {
 	 * weights
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static Knapsack main(String[] args) {
 		// TODO Auto-generated method stub
 
 		int W = Integer.parseInt(args[0]);
@@ -47,12 +48,12 @@ public class Core1 {
 
 		Knapsack k = new Knapsack(values, weights, W, n);
 		
-		/**
-		for (int t = 0; t < 50; t++) {
+		
+		/*for (int t = 0; t < 50; t++) {
 			int count = 0;
 			for (int i = 10; i <= 1011; i += 100) {
-				long time = tests(i, W);
-				times[count]+=time;
+				int bm = tests(i, W);
+				times[count]+=bm;
 				count++;
 			}
 		}
@@ -63,38 +64,35 @@ public class Core1 {
 
 		for (int i = 0; i < numberOfNTested; i++) {
 			System.out.println(times[i]);
-		}
-		*/
+		}*/
+		
+		return k;
 	}
 
-	public static long tests(int n, int W) {
+	public static int tests(int n, int W) {
+		System.out.println("gggggggggggggggg" + n);
 		Random r = new Random();
-		long time = 0;
+		int avgBM = 0;
 		for (int i = 0; i < numTestsPerN; i++) {
 
 			// generate values
 			int[] values = new int[n + 1];
 			values[0] = 0;
 			for (int a = 1; i <= n; i++) {
-				values[a] = r.nextInt(1000);
+				values[a] = r.nextInt(1000)+1;
 			}
 
 			// generate weights
 			int[] weights = new int[n + 1];
 			weights[0] = 0;
 			for (int a = 1; i <= n; i++) {
-				weights[a] = r.nextInt(W);
+				weights[a] = r.nextInt(W)+1;
 			}
-			long startTime = System.nanoTime();
-			int solution = new Knapsack(values, weights, W, n).getSol();
-			long endTime = System.nanoTime();
-			long totalTime = endTime - startTime;
-
-			time += totalTime;
+			Knapsack ks = new Knapsack(values, weights, W, n);
+			avgBM += ks.getBM();
 		}
 
-		long avgTime = time / numTestsPerN;
-		return avgTime;
+		return avgBM/numTestsPerN;
 
 	}
 }

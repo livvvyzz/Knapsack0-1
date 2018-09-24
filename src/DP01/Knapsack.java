@@ -1,3 +1,4 @@
+package DP01;
 
 public class Knapsack {
 
@@ -6,9 +7,12 @@ public class Knapsack {
 	private int W;
 	private int n;
 	private int solution;
+	
+	private int bm = 0;
 
 	public Knapsack(int[] value, int[] weights, int wt, int n) {
-		System.out.println("knapsack 0-1");
+		System.out.println("--------------------------------");
+		System.out.println("Knapsack O-1 Dynamic Programming");
 		this.value = value;
 		this.weights = weights;
 		this.W = wt;
@@ -23,6 +27,7 @@ public class Knapsack {
 
 		for (int j = 0; j <= W; j++) {
 			m[0][j] = 0;
+			bm++;
 		}
 
 		for (int i = 1; i <= n; i++) {
@@ -32,19 +37,22 @@ public class Knapsack {
 				} else {
 					m[i][j] = max(m[i - 1][j], m[i - 1][j - weights[i]] + value[i]);
 				}
+				bm++;
 			}
 		}
 
 		int sol = m[n][W];
-		System.out.println(sol);
+		System.out.println("Solution: " + sol);
+		System.out.println("Items included are...");
 		int w = W;
 		for (int i = n; i > 0 && sol > 0; i--) {
 			if (sol != m[i - 1][w]) {
-				System.out.println(weights[i] + " item: " + i);
+				System.out.println("Item " + i + " with weight " + weights[i] + " and value " + value[i]);
 
 				sol = sol - value[i];
 				w = w - weights[i];
 			}
+			bm++;
 		}
 
 	}
@@ -62,4 +70,7 @@ public class Knapsack {
 
 	}
 
+	public int getBM() {
+		return bm;
+	}
 }

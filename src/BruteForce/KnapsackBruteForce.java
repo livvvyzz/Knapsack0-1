@@ -11,9 +11,11 @@ public class KnapsackBruteForce {
 	private int n;
 
 	private int solution;
+	private int bm = 0;
 
 	public KnapsackBruteForce(int[] value, int[] weights, int[] count, int wt, int n) {
-		System.out.println("bruteforce");
+		System.out.println("--------------------------------");
+		System.out.println("BruteForce O-N");
 		this.value = value;
 		this.weights = weights;
 		this.W = wt;
@@ -23,6 +25,7 @@ public class KnapsackBruteForce {
 		int tot = 0;
 		for (int i = 0; i < count.length; i++) {
 			tot += count[i];
+			bm++;
 		}
 		// convert O-N to O-1
 		int[] newVals = new int[tot + 1];
@@ -40,6 +43,7 @@ public class KnapsackBruteForce {
 				newWeights[x] = weights[i];
 				names[x] = i;
 				x++;
+				bm++;
 			}
 		}
 
@@ -55,6 +59,7 @@ public class KnapsackBruteForce {
 		ArrayList<Integer> set = new ArrayList<Integer>();
 		for (int i = 1; i < n+1; i++) {
 			set.add(i);
+			bm++;
 		}
 
 		ArrayList<ArrayList<Integer>> allsubsets = new ArrayList<ArrayList<Integer>>();
@@ -65,6 +70,7 @@ public class KnapsackBruteForce {
 				if (((i >> j) & 1) == 1) {
 					subset.add(set.get(j));
 				}
+				bm++;
 			}
 			allsubsets.add(subset);
 		}
@@ -76,14 +82,16 @@ public class KnapsackBruteForce {
 			if(getValue(s) > getValue(bestSet) && getWeight(s) <= W) {
 				bestSet = s;
 			}
+			bm++;
 		}
-		
+		this.solution = getValue(bestSet);
 		System.out.println("Solution: " + getValue(bestSet));
-		
+		System.out.println("Items included are...");
+
 		for(int i : bestSet) {
-			System.out.println("Item " + names[i] + "   Weight: " + weights[i]);
+			System.out.println("Item " + names[i] + " with weight " + weights[i] + " and value " + value[i]);
 		}
-		
+		/*
 		System.out.println("-");
 		for(ArrayList<Integer> s : allsubsets) {
 			for(int i : s) {
@@ -91,8 +99,8 @@ public class KnapsackBruteForce {
 			}
 			System.out.println("");
 		}
+		*/
 		
-		System.out.println(allsubsets.size());
 		
 	}
 	
@@ -126,6 +134,10 @@ public class KnapsackBruteForce {
 	public int getSol() {
 		return solution;
 
+	}
+	
+	public int getBM() {
+		return bm;
 	}
 
 }
